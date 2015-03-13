@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/ionicons.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <script src="js/vendor/jquery.min.js"></script>
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <script src="js/vendor/html2canvas.js"></script>
+    <script src="js/vendor/ng-cordova.min.js"></script>
+    <script src="js/vendor/ng-cordova-mocks.min.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+  </head>
+  <body ng-app="WordPaper" ng-controller="MainCtrl">
+
+    <ion-pane>
+      <ion-content
+        scroll="false"
+      >
+      <div class="word-box" id="word-box" pinchin pinchout ng-style="{height:boxHeight+'px',background:currentColor.back}">
+
+        <div class="text-areas">
+          <textarea 
+          cols="10" 
+          rows="3"
+          wrap="hard"
+          id="textarea"
+          class="textarea"
+          type="text"
+          draggable="false"
+          placeholder="你好，这是一个美丽的早晨"
+          ng-blur="hideKeyboard()"
+          ng-class="{'shadow':textShadow}"
+          ng-style="{textAlign:textAlign[$index],color:currentColor.font,fontFamily:currentFont.family}"
+          ng-model="text[$index]"
+          ng-repeat="box in Boxes"
+          ng-focus="currentBox=$index"
+          >
+          </textarea>
+
+        </div>
+        <div class="delete-icon ion-minus" ng-show="Boxes.length==2" ng-style="{color:currentColor.font}" ng-click="deleteBox()"></div>
+        <div class="ion-plus add-icon" ng-show="Boxes.length==1" ng-style="{color:currentColor.font}" ng-click="addBox()"></div>
+        
+        <div class="keyboard-button">
+          <img src="img/buttons/delete.png" ng-click="text[currentBox]=' '">
+          <img src="img/buttons/resign.png" ng-click="hideKeyboard()">
+        </div>
+      </div>
+      <div class="controller-area" id="controller-area" 
+      ng-style="{height:controllerHeight+'px'}">
+        <ion-slide-box
+          delegate-handle="meetingSpaceSlide"
+          class="controller-center"
+        >
+          <ion-slide
+          ng-style="{paddingTop:centerTop+'px'}"
+          > 
+            <div class="color-line">
+              <div class="color-ball" ng-repeat="color in Colors" ng-style="{background:color.back}" ng-class="{'selected':currentColorIndex==$index}" ng-click="setBack($index,Colors[$index])"></div>
+            </div>
+            <div class="controller-button"  
+            ng-click="setAlign('left')">
+              <img src="img/buttons/left.png"
+              ng-class="{'selected':textAlign=='left'}">
+            </div>
+            <div class="controller-button" 
+            ng-click="setAlign('center')"
+            ng-show="Boxes.length==1"
+            >
+              <img src="img/buttons/center.png"
+              ng-class="{'selected':textAlign=='center'}"
+              >
+            </div>
+            <div class="controller-button"
+            ng-click="setAlign('right')"
+            >
+              <img src="img/buttons/right.png"
+              ng-class="{'selected':textAlign=='right'}" 
+              >
+            </div>
+            <div class="controller-button" ng-click="showColor()">
+              <img src="img/buttons/image.png">
+            </div>
+          </ion-slide>
+          <ion-slide
+          ng-style="{paddingTop:centerTop+'px'}"
+          >
+            <div class="font-line">
+              <div class="font-span" ng-repeat="font in Fonts" ng-style="{fontFamily:font.family}" ng-class="{'selected':currentFontIndex==$index}" ng-click="setFont($index,Fonts[$index])">{{font.name}}</div>
+            </div>
+            <div class="font-line-english">
+              <div class="font-span" ng-repeat="font in EnglishFonts" ng-style="{fontFamily:font.family}" ng-class="{'selected':currentFontIndex==$index+4}" ng-click="setFont($index+4,EnglishFonts[$index])">{{font.name}}</div>
+            </div>
+            <div class="controller-button" ng-click="save()">
+              <img src="img/buttons/save.png">
+            </div>
+            <div class="controller-button" ng-click="share()">
+              <img src="img/buttons/share.png">
+            </div>
+            <div class="controller-button" ng-click="toggleShadow()">
+              <img src="img/buttons/shadow.png"
+              ng-class="{'selected':textShadow}"
+              >
+            </div>
+            <div class="controller-button" ng-click="showFont()">
+              <img src="img/buttons/font.png">
+            </div>
+          </ion-slide>
+        </ion-slide-box>
+      </div>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
