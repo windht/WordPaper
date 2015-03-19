@@ -1,5 +1,5 @@
 # WordPaper
-A diary-like, note-based mobile app, based on Ionic framwork
+A diary-like, note-based mobile app, based on Ionic framwork. You can access the [demo](http://tonghu.info/#/demo/11) here with a mobile frame.
 
 # This is not originated by me
   This is originally an app developed by one of my teamates @buildmind using native ios code. I refurbished it using ionic framework.
