@@ -2,7 +2,7 @@
 A diary-like, note-based mobile app, based on Ionic framwork. You can access the [demo](http://tonghu.info/#/demo/11) here with a mobile frame.
 
 # This is not originated by me
-  This is originally an app developed by one of my teamates @buildmind using native ios code. I refurbished it using ionic framework.
+  This is originally an app developed by one of my teammates [TonyChol@buildmind](https://github.com/TonyChol) using native ios code. I refurbished it using ionic framework.
 
 # Current Features
   * Sentence based
@@ -11,4 +11,4 @@ A diary-like, note-based mobile app, based on Ionic framwork. You can access the
   * Font selection
 
 # Acknowledgements
-  Original Idea and UI : TonyChol
+  Original Idea and UI : [TonyChol](https://github.com/TonyChol)
